@@ -88,7 +88,8 @@
     "inline": [
       "git clone https://github.com/Xilinx/video-sdk.git -b {{user `xilinx-video-sdk_version`}}",
       "cd video-sdk/release/{{user `xilinx-video-releasedir`}}",
-      "bash install.sh"]
+      "bash install.sh",
+      "sudo bash -c 'source /opt/xilinx/xcdr/setup.sh'"]
     },
     {
     "type": "shell",

@@ -52,9 +52,12 @@
     "type": "shell",
     "inline_shebang": "/bin/bash -xe",
     "inline": [
-      "git clone https://github.com/Xilinx/video-sdk.git -b {{user `xilinx-video-sdk_version`}} /tmp/video-sdk",
-      "cd /tmp/video-sdk/release/{{user `xilinx-video-releasedir`}}",
-      "sh install.sh"]
+      "uname -r",
+      "sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r) -y",
+      "git clone https://github.com/Xilinx/video-sdk.git -b {{user `xilinx-video-sdk_version`}}",
+      "cd video-sdk/release/{{user `xilinx-video-releasedir`}}",
+      "sh install.sh",
+      "sudo bash -c 'source /opt/xilinx/xcdr/setup.sh'"]
     },
     {
     "type": "shell",

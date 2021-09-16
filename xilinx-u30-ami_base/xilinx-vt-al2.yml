@@ -44,7 +44,6 @@
     {
     "type": "shell",
     "inline": [
-      "uname -r",
       "wget -O /tmp/awscli2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip",
       "cd /tmp && sudo unzip /tmp/awscli2.zip",
       "sudo /tmp/aws/install",
@@ -65,9 +64,12 @@
     "type": "shell",
     "inline_shebang": "/bin/bash -xe",
     "inline": [
+      "uname -r",
+      "sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r) -y",
       "git clone https://github.com/Xilinx/video-sdk.git -b {{user `xilinx-video-sdk_version`}}",
       "cd video-sdk/release/{{user `xilinx-video-releasedir`}}",
-      "sh install.sh"]
+      "sh install.sh",
+      "sudo bash -c 'source /opt/xilinx/xcdr/setup.sh'"]
     },
     {
     "type": "shell",
