@@ -86,6 +86,8 @@
     "type": "shell",
     "inline_shebang": "/bin/bash -xe",
     "inline": [
+      "uname -r",
+      "sudo apt install -y linux-headers-$(uname -r)",
       "git clone https://github.com/Xilinx/video-sdk.git -b {{user `xilinx-video-sdk_version`}}",
       "cd video-sdk/release/{{user `xilinx-video-releasedir`}}",
       "bash install.sh",
