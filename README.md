@@ -10,7 +10,7 @@ In the `xilinx-u30-ami_base` dir you will find packer scripts for Amazon Linux 2
     "subnet_id": "subnet-baff22e5",
     "security_groupids": "sg-053996a563511a3c6,sg-050407dfb1c555723",
     "build_ami": "ami-02354e95b39ca8dec",
-    "xilinx-video-sdk_version": "v1.0",
+    "xilinx-video-sdk_version": "master",
     "xilinx-video-releasedir": "U30_Amazon_2.0_v1.5_20210827"
   },
 ````  
