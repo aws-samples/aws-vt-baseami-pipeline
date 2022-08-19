@@ -8,7 +8,7 @@ phases:
       - yum -y update && yum -y install unzip curl python3-pip
       - pip3 install awscli
       - echo "Installing Packer..."
-      - cd /usr/local/bin/ && curl -qL -o packer.zip https://releases.hashicorp.com/packer/1.6.6/packer_1.6.6_linux_amd64.zip && unzip packer.zip
+      - cd /usr/local/bin/ && curl -qL -o packer.zip https://releases.hashicorp.com/packer/1.8.0/packer_1.8.0_linux_amd64.zip && unzip packer.zip
       - cd $CODEBUILD_SRC_DIR/xilinx-u30-ami_base && packer version
       - echo "Validating packer JSON"
       - packer validate xilinx-vt-al2-eks.yml
@@ -18,4 +18,8 @@ phases:
     commands:
       - echo "Build Phase"
       - export AWS_MAX_ATTEMPTS=200
-      - cd $CODEBUILD_SRC_DIR/nvidia-efa-ami_base && packer build xilinx-vt-al2-ecs.yml
+      - export PACKER_LOG=1 
+      - export PACKER_LOG_PATH=packerlog.txt
+      - cd $CODEBUILD_SRC_DIR/xilinx-u30-ami_base && packer build xilinx-vt-al2-eks.yml
+      - AMINAME=`cat $CODEBUILD_SRC_DIR/xilinx-u30-ami_base/packerlog.txt | grep -A1 'AMIs were created:' | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 2`
+      - echo $AMINAME
