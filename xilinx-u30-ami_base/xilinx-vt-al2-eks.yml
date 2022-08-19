@@ -1,10 +1,10 @@
 {
   "variables": {
     "region": "us-east-1",
-    "flag": "eks-1.19",
-    "subnet_id": "subnet-5163b237",
-    "security_groupids": "sg-053996a563511a3c6,sg-050407dfb1c555723",
-    "build_ami": "ami-09d5097f0b2e9bc30",
+    "flag": "eks-1.21",
+    "subnet_id": "subnet-09b951ba00b705f04",
+    "security_groupids": "sg-0400a42b522066098",
+    "build_ami": "ami-0fb604efcd6aaf3d5",
     "xilinx-video-sdk_version": "v1.5",
     "xilinx-video-releasedir": "U30_Amazon_2.0_v1.5_20210827"
   },
@@ -32,6 +32,7 @@
   "provisioners": [{
     "type": "shell",
     "expect_disconnect": true,
+    "timeout": "20m",
     "inline": [
       "sudo  yum update -y",
       "sudo amazon-linux-extras install lustre2.10 epel -y",
@@ -58,14 +59,6 @@
       "cd video-sdk/release/{{user `xilinx-video-releasedir`}}",
       "sh install.sh",
       "sudo bash -c 'source /opt/xilinx/xcdr/setup.sh'"]
-    },
-    {
-    "type": "shell",
-    "inline_shebang": "/bin/bash -xe",
-    "inline": [
-      "echo 'vt1.3xlarge 15' | sudo tee -a /etc/eks/eni-max-pods.txt",
-      "echo 'vt1.6xlarge 30' | sudo tee -a /etc/eks/eni-max-pods.txt",
-      "echo 'vt1.24xlarge 50' | sudo tee -a /etc/eks/eni-max-pods.txt"]
     },
     {
     "type": "shell",
